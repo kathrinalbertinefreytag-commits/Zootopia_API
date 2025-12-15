@@ -4,11 +4,20 @@ import os
 import requests
 import data_fetcher
 
+print("Working directory:", os.getcwd())
+print("load_dotenv:", load_dotenv())
+API_KEY = os.getenv("API_KEY")
+print("API_KEY repr:", repr(API_KEY))
+print("API_KEY length:", len(API_KEY))
+
 # ---- CONFIG ----
 load_dotenv()  # Looks for .env in current directory or parent dirs
 
-
 API_KEY = os.getenv("API_KEY")
+print("API_KEY:", API_KEY)
+if API_KEY is None:
+    raise ValueError("API_KEY is not set")
+
 API_URL = "https://api.api-ninjas.com/v1/animals"
 TEMPLATE_FILE = "animals_template.html"
 OUTPUT_FILE = "animals.html"
@@ -45,13 +54,16 @@ def serialize_animal(animal_obj):
 
 def main():
     # 1. Ask the user for an animal name
-    query = input("Enter a name of an animal: ").strip()
+    query = input("Enter a name of an animal: ")
 
     if not query:
         print("Error: You must enter a valid animal name.")
         return
 
     # 2. Fetch results from API
+    # initializing the Variable
+    animals_data = []
+
     try:
         animals_data = data_fetcher.fetch_data(query)
     except Exception as e:

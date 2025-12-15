@@ -4,12 +4,6 @@ import os
 import requests
 import data_fetcher
 
-print("Working directory:", os.getcwd())
-print("load_dotenv:", load_dotenv())
-API_KEY = os.getenv("API_KEY")
-print("API_KEY repr:", repr(API_KEY))
-print("API_KEY length:", len(API_KEY))
-
 # ---- CONFIG ----
 load_dotenv()  # Looks for .env in current directory or parent dirs
 

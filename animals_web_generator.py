@@ -8,7 +8,6 @@ import data_fetcher
 load_dotenv()  # Looks for .env in current directory or parent dirs
 
 API_KEY = os.getenv("API_KEY")
-print("API_KEY:", API_KEY)
 if API_KEY is None:
     raise ValueError("API_KEY is not set")
 
@@ -64,7 +63,8 @@ def main():
         print(f"Error by fetching {query}: {e}")
 
     if not animals_data:
-        print("No animals found.")
+        animals_info = f'<h2>The animal "{query}" doesn\'t exist.</h2>'
+        #print("No animals found.")
         return
 
 

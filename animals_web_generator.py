@@ -65,8 +65,13 @@ def main():
     if not animals_data:
         animals_info = f'<h2>The animal "{query}" doesn\'t exist.</h2>'
         #print("No animals found.")
-
-
+        with open(TEMPLATE_FILE, "r") as f:
+            template = f.read()
+        output_html = template.replace("__REPLACE_ANIMALS_INFO__", animals_info)
+        with open(OUTPUT_FILE, "w") as f:
+            f.write(output_html)
+        webbrowser.open("file://" + os.path.abspath(OUTPUT_FILE))
+        return
 
     # 3. Build HTML items
     animals_info = ""

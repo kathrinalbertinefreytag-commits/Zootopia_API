@@ -65,7 +65,7 @@ def main():
     if not animals_data:
         animals_info = f'<h2>The animal "{query}" doesn\'t exist.</h2>'
         #print("No animals found.")
-        return
+
 
 
     # 3. Build HTML items
